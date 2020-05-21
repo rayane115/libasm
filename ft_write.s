@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    ft_write.s                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
+#    By: rqouchic <rqouchic@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/05/11 06:50:13 by user42            #+#    #+#              #
-#    Updated: 2020/05/11 06:50:16 by user42           ###   ########.fr        #
+#    Created: 2020/05/14 04:38:48 by user42            #+#    #+#              #
+#    Updated: 2020/05/14 04:56:38 by rqouchic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 global    ft_write
 section   .text
+extern     __errno_location
 
 ft_write:   
             mov             rax, 1      ; appel système pour l'écriture    
@@ -21,6 +22,11 @@ ft_write:
             ret
         
 error:
-			mov			 	rax, -1
-			ret	
+            neg             rax
+            mov             rdi, rax
+            call            __errno_location
+            mov             [rax], rdi
+            mov             rax, -1
+            ret
+          	
 

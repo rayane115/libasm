@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    ft_strcpy.s                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
+#    By: rqouchic <rqouchic@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/11 06:50:24 by user42            #+#    #+#              #
-#    Updated: 2020/05/11 06:50:27 by user42           ###   ########.fr        #
+#    Updated: 2020/05/14 04:56:55 by rqouchic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,6 @@ section        .text
 	  
 ft_strcpy:
 			mov			rax, -1        ;index a -1
-
-           
 
 null:
         
@@ -32,5 +30,7 @@ start:
 			jmp			start	    			; vu que c'est pas fini on revien a start
 
 return:	
+			mov			cl, 0
+			mov			byte[rdi + rax], cl
 			mov			rax, rdi
 			ret             					; on return la chaine
